@@ -21,4 +21,6 @@ model Hotels {
   Tables                Tables[]
   Reservations          TableReservation[]
   Subscription          Hotel_Subscription[]
+  MenuCategory          MenuCategory[]
+  Dishes                Dishes[]
 }

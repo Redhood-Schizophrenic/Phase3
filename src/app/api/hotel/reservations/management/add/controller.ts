@@ -23,11 +23,12 @@ export async function add_customer(data: any): Promise<ApiResponse> {
 
 		}
 
+
 		// Existing Customer Name
 		let existingCustomer: any = await read_customer({ customer_name, contact });
 
 		if (existingCustomer.returncode != 200) {
-			existingCustomer = await fetch("http://localhost:3000/api/hotel/customers/management/add", {
+			const response = await fetch("http://localhost:3000/api/hotel/customers/management/add", {
 				headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'
@@ -37,18 +38,33 @@ export async function add_customer(data: any): Promise<ApiResponse> {
 			});
 
 			// Check if the response is OK
-			if (!existingCustomer.ok) {
-				const errorMsg = await existingCustomer.json();
+			if (!response.ok) {
+				const errorMsg = await response.json();
 				return {
-					returncode: existingCustomer.status,
-					message: `Failed to add customer ${customer_name}: ${errorMsg}`,
+					returncode: response.status,
+					message: `Failed to add customer ${customer_name}: ${errorMsg.message}`,
 					output: []
-				}
+				};
 			}
 
+			existingCustomer = await response.json();
 		}
 
-		const customer_id = await existingCustomer.output[0].id;
+		let customer_id;
+		try {
+			// Check if existingCustomer.output is an array or object
+			if (Array.isArray(existingCustomer.output)) {
+				customer_id = existingCustomer.output[0].id;
+			} else {
+				customer_id = existingCustomer.output.id;
+			}
+		} catch (error) {
+			return {
+				returncode: 500,
+				message: "Failed to retrieve customer ID",
+				output: []
+			};
+		}
 
 		// Adding the Customer
 		const result = await create_reservation({
@@ -64,6 +80,7 @@ export async function add_customer(data: any): Promise<ApiResponse> {
 			message: "Reservation Added",
 			output: result.output
 		};
+
 
 	} catch (error: any) {
 		return {
