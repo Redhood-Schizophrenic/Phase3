@@ -1,0 +1,9 @@
+// menus.prisma
+
+model MenuCategory {
+  id                    String            @id @default(uuid())
+  CategoryName          String
+  Description           String?
+  HotelId               String
+  Hotel                 Hotels              @relation(fields: [HotelId], references: [id])
+}
