@@ -21,7 +21,7 @@ export async function add_table(data: any): Promise<ApiResponse> {
 		}
 
 		// Existing Table Name
-		const existingTableName = await read_table({ table_name });
+		const existingTableName = await read_table({ table_name, section_id });
 		console.log(existingTableName);
 		if ( existingTableName.returncode == 200 ) {
 			return existingTableName;

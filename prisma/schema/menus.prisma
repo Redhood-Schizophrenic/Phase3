@@ -4,6 +4,7 @@ model MenuCategory {
   id                    String            @id @default(uuid())
   CategoryName          String
   Description           String?
+  Status                String            @default("Active")
   HotelId               String
   Hotel                 Hotels            @relation(fields: [HotelId], references: [id])
   createdAt             DateTime          @default(now())

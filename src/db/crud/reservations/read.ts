@@ -3,19 +3,17 @@ import db from "@/db/connector";
 // Fetch Reservations
 interface ReservationInterface { 
 	hotel_id: string,
-	date: string
 } 
 
 export async function read_reservations ({
 	hotel_id,
-	date
 }: ReservationInterface) {
 	try {
 
 		const result = await db.tableReservation.findMany({
 			where: {
 				HotelId: hotel_id,
-				Date: date
+				Status: "Active"
 			},
 			include: {
 				Hotel: true,

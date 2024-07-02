@@ -23,4 +23,9 @@ model Hotels {
   Subscription          Hotel_Subscription[]
   MenuCategory          MenuCategory[]
   Dishes                Dishes[]
+  Supplier              Suppliers[]
+  ItemCategory          ItemCategories[]
+  Items                 Items[]
+  Invoice               PurchasedInvoice[]
+  AvailableStock        AvailableStock[]
 }

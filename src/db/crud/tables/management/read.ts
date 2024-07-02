@@ -11,7 +11,8 @@ export async function read_tables({
 
 		const result = await db.tables.findMany({
 			where: {
-				HotelId: hotel_id
+				HotelId: hotel_id,
+				Status: "Active"
 			},
 		});
 
@@ -36,17 +37,20 @@ export async function read_tables({
 }
 
 interface TableInterface {
-	table_name: string
+	table_name: string,
+	section_id: string
 }
 
 export async function read_table({
-	table_name
+	table_name,
+	section_id
 }: TableInterface) {
 	try {
 
 		const result = await db.tables.findMany({
 			where: {
-				TableName: table_name
+				TableName: table_name,
+				SectionId: section_id
 			},
 		});
 

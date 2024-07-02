@@ -5,10 +5,9 @@ export async function fetch_reservations(data: any): Promise<ApiResponse> {
 	try {
 
 		const hotel_id: string | null = data['hotel_id'];
-		const date: string | null = data['date'];
 
 		// Default Invalid Checker
-		if ( hotel_id == null || date == null ) {
+		if ( hotel_id == null ) {
 			return {
 				returncode: 400,
 				message: 'Invalid Input',
@@ -20,7 +19,6 @@ export async function fetch_reservations(data: any): Promise<ApiResponse> {
 		// Getting the Sections
 		const result = await read_reservations({
 			hotel_id,
-			date
 		});
 
 		return {

@@ -12,7 +12,8 @@ export async function read_sections ({
 		// Inserting the record
 		const result = await db.sections.findMany({
 			where: {
-				HotelId: hotel_id
+				HotelId: hotel_id,
+				Status: "Active"
 			}		
 		});
 
