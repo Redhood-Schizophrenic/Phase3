@@ -1,7 +1,7 @@
 // subscriptions.prisma
 
 model Subscriptions {
-  id                    String             @id @default(uuid())
+  id                    String             @id @default(uuid())   @unique
   SubscriptionName      String             @unique
   Price                 Float
   Validity              Int
@@ -12,7 +12,7 @@ model Subscriptions {
 }
 
 model Hotel_Subscription {
-  id                    String              @id @default(uuid())
+  id                    String              @id @default(uuid())    @unique
   HotelId               String
   SubscriptionId        String
   isValid               Boolean

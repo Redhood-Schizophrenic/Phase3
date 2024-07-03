@@ -61,7 +61,7 @@ export async function read_table({
 		if (result.length == 0) {
 			return {
 				returncode: 400,
-				message: "User doesn't exist",
+				message: "Table doesn't exist",
 				output: result
 			};
 		}

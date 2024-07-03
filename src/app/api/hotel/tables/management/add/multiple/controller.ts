@@ -28,24 +28,14 @@ export async function add_tables(data: any): Promise<ApiResponse> {
 				persons_occupiable
 			};
 
-			const response = await fetch("http://localhost:3000/api/hotel/tables/management/add/single", {
+			await fetch("http://localhost:3000/api/hotel/tables/management/add/single", {
 				headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'
 				},
 				method: "POST",
 				body: JSON.stringify(data1)
-			});
-			
-			// Check if the response is OK
-			if (!response.ok) {
-				const errorMsg = await response.text();
-				return {
-					returncode: response.status,
-					message: `Failed to add table ${table_name}: ${errorMsg}`,
-					output: []
-				}
-			}
+			});	
 		}
 
 		return {
@@ -55,7 +45,6 @@ export async function add_tables(data: any): Promise<ApiResponse> {
 		};
 
 	} catch (error: any) {
-		console.error("Error adding tables:", error);
 		return {
 			returncode: 500,
 			message: error.message || 'Internal Server Error',

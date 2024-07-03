@@ -1,7 +1,7 @@
 //inventory.prisma
 
 model Suppliers {
-  id              String           @id @default(uuid())
+  id              String           @id @default(uuid()) @unique
   SupplierName    String
   Contact         String
   Email           String
@@ -18,7 +18,7 @@ model Suppliers {
 }
 
 model ItemCategories {
-  id              String            @id @default(uuid())
+  id              String            @id @default(uuid()) @unique
   CategoryName    String
   Description     String?
   HotelId         String
@@ -32,7 +32,7 @@ model ItemCategories {
 }
 
 model Items {
-  id              String            @id @default(uuid())
+  id              String            @id @default(uuid()) @unique
   ItemName        String
   Description     String?
   HotelId         String
@@ -50,7 +50,7 @@ model Items {
 }
 
 model PurchasedInvoice {
-  id              String            @id @default(uuid())
+  id              String            @id @default(uuid()) @unique
   Date            String
   PaymentMode     String?
   TotalAmount     Float
@@ -69,7 +69,7 @@ model PurchasedInvoice {
 } 
 
 model PurchasedStock {
-  id              String            @id @default(uuid())
+  id              String            @id @default(uuid()) @unique
   InvoiceId       String
   Invoice         PurchasedInvoice  @relation(fields: [InvoiceId], references: [id])
   ItemId          String
@@ -83,7 +83,7 @@ model PurchasedStock {
 }
 
 model AvailableStock {
-  id                    String            @id @default(uuid())
+  id                    String            @id @default(uuid()) @unique
   HotelId               String
   Hotel                 Hotels            @relation(fields: [HotelId], references: [id])
   ItemId                String
@@ -96,7 +96,7 @@ model AvailableStock {
 }
 
 model DailyStock {
-  id                    String            @id @default(uuid())
+  id                    String            @id @default(uuid())   @unique
   ItemId                String
   Items                 Items             @relation(fields: [ItemId], references: [id])
   Quantity              String

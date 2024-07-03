@@ -1,7 +1,7 @@
 //customers.prisma
 
 model Customers {
-  id                  String            @id @default(uuid())
+  id                  String            @id @default(uuid()) @unique
   CustomerName        String?   
   Contact             String?
   Email               String?
@@ -14,7 +14,7 @@ model Customers {
 }
 
 model CustomerOccassion {
-  id                  String            @id @default(uuid())
+  id                  String            @id @default(uuid())    @unique
   Occassion           String
   Date                String
   CustomerId          String            // Foreign key field
