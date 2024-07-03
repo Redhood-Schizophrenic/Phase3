@@ -79,31 +79,27 @@ All APIs in the above directories is listed here:
 | `Add Table`                 | {url}/api/hotel/tables/management/add                           |   `POST`          |
 | `Add Table Reservation`     | {url}/api/hotel/reservations/management/add                     |   `POST`          |
 | `Add Multiple Tables`       | {url}/api/hotel/tables/management/add/multiple                  |   `POST`          |
-
 | `Fetch Section`             | {url}/api/hotel/sections/management/fetch                       |   `POST`          |
 | `Fetch Tables`              | {url}/api/hotel/tables/management/fetch                         |   `POST`          |
 | `Fetch Hotel's Reservations`| {url}/api/hotel/reservations/management/fetch                   |   `POST`          |
-
 | `Update Section Name`       | {url}/api/hotel/sections/management/update/name                 |   `PUT`           |
 | `Update Section Status`     | {url}/api/hotel/sections/management/update/status               |   `PUT`           |
 | `Update Table Name`         | {url}/api/hotel/tables/management/update/name                   |   `PUT`           |
 | `Update Table Status`       | {url}/api/hotel/tables/management/update/status                 |   `PUT`           |
-| `Update Reservations Status`| {url}/api/hotel/reservations/management/update/status                 |   `PUT`           |
+| `Update Reservations Status`| {url}/api/hotel/reservations/management/update/status           |   `PUT`           |
 
 
 
 ## Inventory Management
 
-| Function                      | API Call                                                                  | Method            |
-| :------------------------     | :-----------------------------------------------                          |:------------------|
-| `Add Supplier`                | {url}/api/hotel/suppliers/management/add                                  |   `POST`          |
-| `Add Item Category`           | {url}/api/hotel/inventory/item_categories/management/add                  |   `POST`          |
-| `Add Item`                    | {url}/api/hotel/inventory/items/management/add                            |   `POST`          |
-| `Add Purchased Invoice`       | {url}/api/hotel/inventory/purchased/invoices/management/add               |   `POST`          |
-| `Add Purchased Stock`         | {url}/api/hotel/inventory/purchased/stock/management/add                  |   `POST`          |
-| `Add Available Stock`         | {url}/api/hotel/inventory/available_stock/management/add                  |   `POST`          |
-
-
+| Function                      | API Call                                                                   | Method            |
+| :------------------------     | :-----------------------------------------------                           |:------------------|
+| `Add Supplier`                | {url}/api/hotel/suppliers/management/add                                   |   `POST`          |
+| `Add Item Category`           | {url}/api/hotel/inventory/item_categories/management/add                   |   `POST`          |
+| `Add Item`                    | {url}/api/hotel/inventory/items/management/add                             |   `POST`          |
+| `Add Purchased Invoice`       | {url}/api/hotel/inventory/purchased/invoices/management/add                |   `POST`          |
+| `Add Purchased Stock`         | {url}/api/hotel/inventory/purchased/stock/management/add                   |   `POST`          |
+| `Add Available Stock`         | {url}/api/hotel/inventory/available_stock/management/add                   |   `POST`          |
 | `Fetch Supplier`              | {url}/api/hotel/suppliers/management/fetch                                 |   `POST`          |
 | `Fetch Item Categories`       | {url}/api/hotel/inventory/item_categories/management/fetch                 |   `POST`          |
 | `Fetch Items`                 | {url}/api/hotel/inventory/items/management/fetch                           |   `POST`          |
@@ -113,8 +109,6 @@ All APIs in the above directories is listed here:
 | `Filter Invoices by Payment`  | {url}/api/hotel/inventory/purchased/invoices/management/fetch/payment_status|  `POST`          |
 | `Fetch Purchased Stock`       | {url}/api/hotel/inventory/purchased/stock/management/fetch                 |   `POST`          |
 | `Fetch Available Stock`       | {url}/api/hotel/inventory/available_stock/management/fetch                 |   `POST`          |
-
-
 | `Update Supplier's Details`   | {url}/api/hotel/suppliers/management/update/details                        |   `PUT`           |
 | `Update Supplier's Status`    | {url}/api/hotel/suppliers/management/update/status                         |   `PUT`           |
 | `Update Category's Details`   | {url}/api/hotel/inventory/item_categories/management/update/details        |   `PUT`           |

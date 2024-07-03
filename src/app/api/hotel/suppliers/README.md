@@ -41,7 +41,7 @@ http://localhost:3000/api/hotel/suppliers/management/update/details
 ```
 
 ###### 4. Update Status
-
+http://localhost:3000/api/hotel/suppliers/management/update/status
 `PUT`
 ```json
 {

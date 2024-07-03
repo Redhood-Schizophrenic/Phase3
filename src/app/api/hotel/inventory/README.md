@@ -205,6 +205,7 @@ http://localhost:3000/api/hotel/inventory/available_stock/management/update/quan
 ```
 
 ###### 4. Update Status
+http://localhost:3000/api/hotel/inventory/available_stock/management/update/status
 `PUT`
 ```json
 {
