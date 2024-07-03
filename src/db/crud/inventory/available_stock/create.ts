@@ -3,13 +3,15 @@ import db from "@/db/connector";
 interface StockInterface {
 	item_id: string,
 	quantity: string,
-	hotel_id: string
+	hotel_id: string,
+	unit: string
 }
 
 export async function create_available_stock ({
 	item_id,
 	quantity,
-	hotel_id
+	hotel_id,
+	unit
 }: StockInterface){
 	try {
 
@@ -18,7 +20,8 @@ export async function create_available_stock ({
 			data: {
 				ItemId: item_id,
 				Quantity: quantity,
-				HotelId: hotel_id
+				HotelId: hotel_id,
+				Unit: unit
 			}
 		});
 

@@ -49,7 +49,8 @@ export async function read_section ({
 		// Fetching the record
 		const result = await db.sections.findMany({
 			where: {
-				SectionName: section_name
+				SectionName: section_name,
+				Status: "Active"
 			}		
 		});
 

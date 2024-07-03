@@ -1,9 +1,9 @@
-import { update_menu } from "./controller";
+import { update_available_stock } from "./controller";
 
 export async function PUT(request: Request) {
 	try {
 		const data = await request.json();
-		const result = await update_menu(data);
+		const result = await update_available_stock(data);
 		return Response.json(
 			{
 				returncode: result.returncode,
@@ -19,7 +19,7 @@ export async function PUT(request: Request) {
 		return Response.json(
 			{
 				returncode: 500,
-				message: `Error Updating Menu: ${error.message}`,
+				message: `Error Updating Status: ${error.message}`,
 				output: []
 			},
 			{

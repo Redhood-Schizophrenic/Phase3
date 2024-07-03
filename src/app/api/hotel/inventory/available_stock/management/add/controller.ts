@@ -1,17 +1,17 @@
 import { ApiResponse } from "@/types/ApiResponse";
-import { read_menu } from "@/db/crud/menus/management/read";
-import { create_menu } from "@/db/crud/menus/management/create";
+import { create_available_stock } from "@/db/crud/inventory/available_stock/create";
+import { it } from "node:test";
 
-export async function add_menu(data: any): Promise<ApiResponse> {
+export async function add_available_stock(data: any): Promise<ApiResponse> {
 	try {
 
-		const dish_id: string | null = data['dish_id'];
-		const section_id: string | null = data['section_id'];
-		const code: string | null = data['code'];
-		const price: number | null = data['price'];
+		const item_id: string | null = data['item_id'];
+		const quantity: string | null = data['quantity'];
+		const unit: string | null = data['unit'];
+		const hotel_id: string | null = data['hotel_id'];
 
 		// Default Invalid Checker
-		if ( dish_id == null || section_id == null || price == null ) {
+		if ( item_id == null || quantity == null || unit == null || hotel_id == null ) {
 			return {
 				returncode: 400,
 				message: 'Invalid Input',
@@ -19,24 +19,18 @@ export async function add_menu(data: any): Promise<ApiResponse> {
 			}
 
 		}
-
-		// Existing Dish 
-		const existingDish = await read_menu({ dish_id });
-		if ( existingDish.returncode == 200 ) {
-			return existingDish;
-		}
-
-		// Inserting the Dish
-		const result = await create_menu({
-			dish_id,
-			section_id,
-			code,
-			price
+		
+		// Inserting the Available Stock
+		const result = await create_available_stock({
+			item_id,
+			quantity,
+			unit,
+			hotel_id
 		});
 
 		return {
 			returncode: 200,
-			message: "Menu Added",
+			message: "Available Stock Added",
 			output: result.output
 		};
 

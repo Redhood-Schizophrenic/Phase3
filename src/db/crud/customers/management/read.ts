@@ -15,7 +15,8 @@ export async function read_customer({
 		const result = await db.customers.findMany({
 			where: {
 				CustomerName: customer_name,
-				Contact: contact
+				Contact: contact,
+				Status: "Active"
 			},
 		});
 
@@ -59,7 +60,8 @@ export async function read_customers ({
 
 		const result = await db.customers.findMany({
 			where: {
-				HotelId: hotel_id
+				HotelId: hotel_id,
+				Status: "Active"
 			},
 		});
 

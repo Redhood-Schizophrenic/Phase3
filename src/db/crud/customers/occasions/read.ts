@@ -5,12 +5,15 @@ interface CustomerInterface {
 	customer_id: string
 }
 
-export async function read_occassion ({ customer_id }: CustomerInterface) {
+export async function read_occassion({ customer_id }: CustomerInterface) {
 	try {
 
 		const result = await db.customerOccassion.findMany({
 			where: {
-				CustomerId: customer_id
+				CustomerId: customer_id,
+				Customer: {
+					Status: "Active"
+				}
 			},
 			include: {
 				Customer: true
@@ -46,10 +49,15 @@ export async function read_occassion ({ customer_id }: CustomerInterface) {
 }
 
 // Fetch Special Occasions
-export async function read_occassions () {
+export async function read_occassions() {
 	try {
 
 		const result = await db.customerOccassion.findMany({
+			where: {
+				Customer: {
+					Status: "Active"
+				}
+			},
 			include: {
 				Customer: true
 			}

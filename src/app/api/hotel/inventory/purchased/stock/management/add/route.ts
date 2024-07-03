@@ -1,9 +1,9 @@
-import { add_menu } from "./controller";
+import { add_purchase_stock } from "./controller";
 
 export async function POST(request: Request) {
 	try {
 		const data = await request.json();
-		const result = await add_menu(data);
+		const result = await add_purchase_stock(data);
 		return Response.json(
 			{
 				returncode: result.returncode,
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 		return Response.json(
 			{
 				returncode: 500,
-				message: `Error Adding Menu: ${error.message}`,
+				message: `Error Adding Purchase Stock: ${error.message}`,
 				output: []
 			},
 			{

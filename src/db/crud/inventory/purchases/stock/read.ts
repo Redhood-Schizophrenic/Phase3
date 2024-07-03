@@ -5,7 +5,7 @@ interface StockInterface {
 	invoice_id: string
 }
 
-export async function read_items ({
+export async function read_purchased_stock ({
 	invoice_id
 }: StockInterface) {
 	try {

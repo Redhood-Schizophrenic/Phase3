@@ -1,14 +1,15 @@
 import { ApiResponse } from "@/types/ApiResponse";
-import { update_available_stock_status } from "@/db/crud/inventory/available_stock/update";
+import { update_available_stock_quantity } from "@/db/crud/inventory/available_stock/update";
 
-export async function update_available_stock(data: any): Promise<ApiResponse> {
+export async function update_available_quantity(data: any): Promise<ApiResponse> {
+
 	try {
 
 		const available_stock_id: string | null = data['available_stock_id'];
-		const status: string | null = data['status'];
+		const quantity: string | null = data['quantity'];
 
 		// Default Invalid Checker
-		if ( available_stock_id == null || status == null ) {
+		if ( available_stock_id == null || quantity == null ) {
 			return {
 				returncode: 400,
 				message: 'Invalid Input',
@@ -17,15 +18,15 @@ export async function update_available_stock(data: any): Promise<ApiResponse> {
 
 		}
 
-		// Updating the Status
-		const result = await update_available_stock_status({
+		// Updating the Quantity
+		const result = await update_available_stock_quantity({
 			available_stock_id,
-			status
+			quantity
 		});
 
 		return {
 			returncode: 200,
-			message: "Status Updated",
+			message: "Quantity Updated",
 			output: result.output
 		};
 

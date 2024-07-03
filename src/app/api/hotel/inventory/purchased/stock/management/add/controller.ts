@@ -1,42 +1,34 @@
 import { ApiResponse } from "@/types/ApiResponse";
-import { read_menu } from "@/db/crud/menus/management/read";
-import { create_menu } from "@/db/crud/menus/management/create";
+import { create_purchase_stock } from "@/db/crud/inventory/purchases/stock/create"; 
 
-export async function add_menu(data: any): Promise<ApiResponse> {
+export async function add_purchase_stock(data: any): Promise<ApiResponse> {
 	try {
 
-		const dish_id: string | null = data['dish_id'];
-		const section_id: string | null = data['section_id'];
-		const code: string | null = data['code'];
-		const price: number | null = data['price'];
+		const invoice_id: string | null = data['invoice_id'];
+		const item_id: string | null = data['item_id'];
+		const quantity: string | null = data['quantity'];
+		const unit: string | null = data['unit'];
 
 		// Default Invalid Checker
-		if ( dish_id == null || section_id == null || price == null ) {
+		if ( invoice_id == null || item_id == null || quantity == null || unit == null ) {
 			return {
 				returncode: 400,
 				message: 'Invalid Input',
 				output: []
 			}
-
 		}
 
-		// Existing Dish 
-		const existingDish = await read_menu({ dish_id });
-		if ( existingDish.returncode == 200 ) {
-			return existingDish;
-		}
-
-		// Inserting the Dish
-		const result = await create_menu({
-			dish_id,
-			section_id,
-			code,
-			price
+		// Add Items Purchased Stock 
+		const result = await create_purchase_stock({
+			invoice_id,
+			item_id,
+			quantity,
+			unit
 		});
 
 		return {
 			returncode: 200,
-			message: "Menu Added",
+			message: "Purchase Order Added",
 			output: result.output
 		};
 

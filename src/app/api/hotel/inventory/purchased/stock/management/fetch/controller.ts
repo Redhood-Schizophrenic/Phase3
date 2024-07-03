@@ -1,13 +1,13 @@
 import { ApiResponse } from "@/types/ApiResponse";
-import { read_menus } from "@/db/crud/menus/management/read";
+import { read_purchased_stock } from "@/db/crud/inventory/purchases/stock/read";
 
-export async function fetch_menus(data: any): Promise<ApiResponse> {
+export async function fetch_purchased_stock(data: any): Promise<ApiResponse> {
 	try {
 
-		const section_id: string | null = data['section_id'];
+		const invoice_id: string | null = data['invoice_id'];
 
 		// Default Invalid Checker
-		if ( section_id == null ) {
+		if ( invoice_id == null ) {
 			return {
 				returncode: 400,
 				message: 'Invalid Input',
@@ -17,13 +17,13 @@ export async function fetch_menus(data: any): Promise<ApiResponse> {
 		}
 
 		// Getting the Sections
-		const result = await read_menus({
-			section_id
+		const result = await read_purchased_stock({
+			invoice_id
 		});
 
 		return {
 			returncode: 200,
-			message: "Hotel's Menus Fetched",
+			message: "Invoice's Stock Fetched",
 			output: result.output
 		};
 

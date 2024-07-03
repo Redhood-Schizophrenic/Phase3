@@ -1,9 +1,9 @@
-import { fetch_menus } from "./controller";
+import { fetch_purchased_stock } from "./controller";
 
 export async function POST(request: Request) {
 	try {
 		const data = await request.json();
-		const result = await fetch_menus(data);
+		const result = await fetch_purchased_stock(data);
 		return Response.json(
 			{
 				returncode: result.returncode,
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 		return Response.json(
 			{
 				returncode: 500,
-				message: `Error Fetching Menus: ${error.message}`,
+				message: `Error Fetching Purchased Stock: ${error.message}`,
 				output: []
 			},
 			{

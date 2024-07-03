@@ -50,7 +50,8 @@ export async function read_table({
 		const result = await db.tables.findMany({
 			where: {
 				TableName: table_name,
-				SectionId: section_id
+				SectionId: section_id,
+				Status: "Active"
 			},
 		});
 

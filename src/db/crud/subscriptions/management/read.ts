@@ -40,7 +40,8 @@ export async function read_subscription({
 
 		const result = await db.subscriptions.findMany({
 			where: {
-				SubscriptionName: subscription_name
+				SubscriptionName: subscription_name,
+				Status: "Active"
 			},
 		});
 

@@ -89,6 +89,7 @@ model AvailableStock {
   ItemId                String
   Items                 Items             @relation(fields: [ItemId], references: [id])
   Quantity              String
+  Unit            String
   Status                String            @default("Available")
   createdAt             DateTime          @default(now())
   updatedAt             DateTime          @updatedAt
@@ -99,6 +100,7 @@ model DailyStock {
   ItemId                String
   Items                 Items             @relation(fields: [ItemId], references: [id])
   Quantity              String
+
   Status                String            @default("Active")
   Date                  String
 }
