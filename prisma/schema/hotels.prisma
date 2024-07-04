@@ -28,4 +28,5 @@ model Hotels {
   Items                 Items[]
   Invoice               PurchasedInvoice[]
   AvailableStock        AvailableStock[]
+  Staff                 Staffs[]
 }
