@@ -44,4 +44,7 @@ model Menus {
   Status                String            @default("Active")
   createdAt             DateTime          @default(now())
   updatedAt             DateTime          @updatedAt
+
+  // Parent - Child Relationship
+  Menu                  OrderMenus[]
 }

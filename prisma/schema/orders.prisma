@@ -1,0 +1,41 @@
+// orders.prisma 
+
+model Orders {
+  id              String           @id @default(uuid()) @unique
+  Type            String            // Dine-in , Takeaway
+  TableId         String?
+  Table           Tables?           @relation(fields: [TableId], references: [id])
+  CustomerId      String?
+  Customers       Customers?        @relation(fields: [CustomerId], references: [id])
+  WaiterId        String
+  Waiters         Staffs           @relation(fields: [WaiterId], references: [id])
+  HotelId         String
+  Hotel           Hotels           @relation(fields: [HotelId], references: [id])
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  // Parent - Child Relationship
+  Menu            OrderMenus[]
+  Bill            Bills[]
+}
+
+model OrderMenus {
+  id              String           @id @default(uuid()) @unique
+  Quantity        String
+  TotalAmount     Float
+  MenuId          String
+  Menu            Menus            @relation(fields: [MenuId], references: [id])
+  OrderId         String
+  Order           Orders           @relation(fields: [OrderId], references: [id])
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}
+
+model CancelledOrders {
+  id              String           @id @default(uuid()) @unique
+  Reason          String
+  MenuOrderId     String
+  MenuOrder       OrderMenus       @relation(fields: [MenuOrderId], references: [id])
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}

@@ -140,3 +140,50 @@ export async function read_staff_details ({
 
 	}
 }
+
+
+// Staff Authentication
+interface LoginInterface {
+	email: string,
+}
+
+export async function staff_login ({
+	email
+}: LoginInterface) {
+	try {
+
+		// Fetching the record
+		const result = await db.staffs.findMany({
+			where: {
+				Email: email,
+				Status: "Active"
+			}		
+		});
+
+		// Database is disconnected
+		db.$disconnect();
+
+		if(result.length==0){
+			return {
+				returncode: 400,
+				message: "Category doesn't exist",
+				output: []
+			}
+		}
+
+		return {
+			returncode: 200,
+			message: "Data Fetched",
+			output: result
+		};
+
+	} catch (error: any) {
+
+		return {
+			returncode: 500,
+			message: error.message,
+			output: []
+		};
+
+	}
+}

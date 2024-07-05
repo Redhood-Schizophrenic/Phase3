@@ -1,0 +1,16 @@
+// bills.prisma
+
+model Bills {
+  id              String            @id @default(uuid()) @unique
+  OrderId         String
+  Order           Orders            @relation(fields: [OrderId], references: [id])
+  TotalAmount     Float
+  GSTAmount       Float
+  MenuTotal       Float
+  BalanceAmount   Float             @default(0.0)
+  DiscountPrice   Float             @default(0.0)
+  PaymentMode     String
+  Status          String            
+  StaffId         String
+  Staff           Staffs            @relation(fields: [StaffId], references: [id])
+}

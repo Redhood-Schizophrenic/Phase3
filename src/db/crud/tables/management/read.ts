@@ -12,7 +12,9 @@ export async function read_tables({
 		const result = await db.tables.findMany({
 			where: {
 				HotelId: hotel_id,
-				Status: "Active"
+				NOT:{
+					Status: "Inactive"
+				}
 			},
 		});
 

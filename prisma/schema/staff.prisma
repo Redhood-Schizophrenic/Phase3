@@ -22,6 +22,8 @@ model Staffs {
 
   // Parent - Child Relationship
   Attendance            StaffAttendance[]
+  Bill                  Bills[]
+  Order                 Orders[]
 }
 
 model  StaffAttendance {

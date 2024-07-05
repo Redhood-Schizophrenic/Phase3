@@ -11,6 +11,7 @@ model Customers {
   //Parent-Child Relation
   Reservation         TableReservation[]
   Occassion           CustomerOccassion[]
+  Order               Orders[]
 }
 
 model CustomerOccassion {

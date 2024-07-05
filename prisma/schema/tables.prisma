@@ -25,6 +25,9 @@ model Tables {
   PersonsOccupiable   String?           @default("4")
   createdAt           DateTime          @default(now())
   updatedAt           DateTime          @updatedAt
+
+  // Parent - Child Relationship
+  Order                Orders[]
 }
 
 model TableReservation {
