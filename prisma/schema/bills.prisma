@@ -10,7 +10,7 @@ model Bills {
   BalanceAmount   Float             @default(0.0)
   DiscountPrice   Float             @default(0.0)
   PaymentMode     String
-  Status          String            
+  Status          String            // Paid, Unpaid            
   StaffId         String
   Staff           Staffs            @relation(fields: [StaffId], references: [id])
 }
