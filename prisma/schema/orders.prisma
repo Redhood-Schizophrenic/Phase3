@@ -23,6 +23,7 @@ model Orders {
 model OrderMenus {
   id              String           @id @default(uuid()) @unique
   Quantity        String
+  Note            String?
   TotalAmount     Float
   MenuId          String
   Menu            Menus            @relation(fields: [MenuId], references: [id])

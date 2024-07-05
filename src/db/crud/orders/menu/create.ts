@@ -2,6 +2,7 @@ import db from "@/db/connector";
 
 interface MenuOrderInterface {
 	quantity: string,
+	note: string | null,
 	total_amount: number,
 	menu_id: string,
 	order_id: string,
@@ -9,6 +10,7 @@ interface MenuOrderInterface {
 
 export async function create_menu_of_order({
 	quantity,
+	note,
 	total_amount,
 	menu_id,
 	order_id
@@ -20,6 +22,7 @@ export async function create_menu_of_order({
 		const result = await db.orderMenus.create({
 			data: {
 				Quantity: quantity,
+				Note: note,
 				TotalAmount: total_amount,
 				MenuId: menu_id,
 				OrderId: order_id

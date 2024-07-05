@@ -3,7 +3,8 @@ import { ApiResponse } from "@/types/ApiResponse";
 interface MenuOrder {
 	quantity: string,
 	menu_id: string,
-	order_id: string
+	order_id: string,
+	note: string | null
 }
 
 export async function add_menu_order(data: any): Promise<ApiResponse> {

@@ -5,10 +5,8 @@ import { read_menu_for_order } from "@/db/crud/menus/management/read";
 export async function add_menu_order(data: any): Promise<ApiResponse> {
 	try {
 
-		console.log(data);
-
 		const quantity: string | null = data['quantity'];
-		// const total_amount: number | null = data['total_amount'];
+		const note: string | null = data['note'];
 		const menu_id: string | null = data['menu_id'];
 		const order_id: string | null = data['order_id'];
 
@@ -33,6 +31,7 @@ export async function add_menu_order(data: any): Promise<ApiResponse> {
 		// Inserting the Menu Order
 		const result = await create_menu_of_order({
 			quantity,
+			note,
 			total_amount,
 			menu_id,
 			order_id
