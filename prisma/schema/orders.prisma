@@ -17,6 +17,7 @@ model Orders {
   // Parent - Child Relationship
   Menu            OrderMenus[]
   Bill            Bills[]
+  CancelledOrders CancelledOrders[]
 }
 
 model OrderMenus {
@@ -34,8 +35,10 @@ model OrderMenus {
 model CancelledOrders {
   id              String           @id @default(uuid()) @unique
   Reason          String
-  MenuOrderId     String
-  MenuOrder       OrderMenus       @relation(fields: [MenuOrderId], references: [id])
+  MenuId          String
+  Menu            Menus            @relation(fields: [MenuId], references: [id])
+  OrderId         String
+  Order           Orders           @relation(fields: [OrderId], references: [id])
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
 }

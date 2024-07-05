@@ -85,3 +85,49 @@ export async function read_menu ({
 
 	}
 }
+
+// Check if menu exists
+interface OrderMenuInterface {
+	menu_id: string
+}
+
+export async function read_menu_for_order ({
+	menu_id
+}: OrderMenuInterface) {
+	try {
+
+		// Fetching the record
+		const result = await db.menus.findMany({
+			where: {
+				id: menu_id
+			}		
+		});
+
+		// Database is disconnected
+		db.$disconnect();
+
+		if(result.length==0){
+			return {
+				returncode: 400,
+				message: "Category doesn't exist",
+				output: []
+			}
+		}
+
+		return {
+			returncode: 200,
+			message: "Data Fetched",
+			output: result
+		};
+
+	} catch (error: any) {
+
+		return {
+			returncode: 500,
+			message: error.message,
+			output: []
+		};
+
+	}
+}
+

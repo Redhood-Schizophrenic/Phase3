@@ -99,6 +99,9 @@ export async function read_orders_by_table_id({
 		const result = await db.orders.findMany({
 			where: {
 				TableId: table_id,
+				Table: {
+					Status: "Booked"
+				}
 			},
 			include: {
 				Waiters: true,
