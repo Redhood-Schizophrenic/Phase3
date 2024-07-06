@@ -22,7 +22,7 @@ export async function add_order(data: any): Promise<ApiResponse> {
 		const hotel_id: string | null = data['hotel_id'];
 
 		// Default Invalid Checker
-		if (hotel_id == null || customer_name == null || contact == null || type == null || waiter_id== null ) {
+		if (hotel_id == null || type == null || waiter_id== null ) {
 			return {
 				returncode: 400,
 				message: 'Invalid Input',
@@ -40,30 +40,36 @@ export async function add_order(data: any): Promise<ApiResponse> {
 		}
 
 		let customer_id;
-		// Existing Customer
-		const existingCustomer = await read_customer({ customer_name, contact });
-		if (existingCustomer.returncode != 200) {
-			
-			// Adding the Customer
-			const result = await create_customer({
-				customer_name,
-				contact,
-				email,
-				hotel_id
-			});
 
-			customer_id = result.output.id;
-			// If occassion exists
-			if (occassion != null && date != null) {
-				await create_customer_occassion({
-					customer_id: customer_id,
-					occassion,
-					date
-				})
+		if( customer_name != null && contact != null ) {
+			// Existing Customer
+			const existingCustomer = await read_customer({ customer_name, contact });
+			if (existingCustomer.returncode != 200) {
+
+				// Adding the Customer
+				const result = await create_customer({
+					customer_name,
+					contact,
+					email,
+					hotel_id
+				});
+
+				customer_id = result.output.id;
+				// If occassion exists
+				if (occassion != null && date != null) {
+					await create_customer_occassion({
+						customer_id: customer_id,
+						occassion,
+						date
+					})
+				}
+			}
+			else {
+				customer_id = existingCustomer.output[0].id;
 			}
 		}
 		else {
-			customer_id = existingCustomer.output[0].id;
+			customer_id = ""
 		}
 
 		// Inserting the Order

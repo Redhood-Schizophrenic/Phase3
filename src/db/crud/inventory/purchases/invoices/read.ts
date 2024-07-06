@@ -54,7 +54,10 @@ export async function read_invoice_by_supplier ({
 		const result = await db.purchasedInvoice.findMany({
 			where: {
 				SupplierId: supplier_id
-			}		
+			},
+			include: {
+				Suppliers: true
+			}
 		});
 
 		// Database is disconnected
@@ -99,7 +102,10 @@ export async function read_invoice_by_payment_status ({
 		const result = await db.purchasedInvoice.findMany({
 			where: {
 				PaymentStatus: payment_status
-			}		
+			},
+			include: {
+				Suppliers: true
+			}
 		});
 
 		// Database is disconnected
@@ -144,7 +150,10 @@ export async function read_invoice_by_date ({
 		const result = await db.purchasedInvoice.findMany({
 			where: {
 				Date: invoice_date
-			}		
+			},
+			include: {
+				Suppliers: true
+			}
 		});
 
 		// Database is disconnected

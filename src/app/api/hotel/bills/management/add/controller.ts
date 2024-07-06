@@ -1,6 +1,7 @@
 import { ApiResponse } from "@/types/ApiResponse";
 import { check_order_exists } from "@/db/crud/bills/management/read";
 import { create_bill } from "@/db/crud/bills/management/create";
+import { update_table_status } from "@/db/crud/tables/management/update";
 
 export async function add_bill(data: any): Promise<ApiResponse> {
 	try {
@@ -14,6 +15,7 @@ export async function add_bill(data: any): Promise<ApiResponse> {
 		const payment_mode: string | null = data['payment_mode'];
 		const payment_status: string | null = data['payment_status'];
 		const staff_id: string | null = data['staff_id'];
+		const table_id: string | null = data['table_id'];
 
 		// Default Invalid Checker
 		if (order_id == null || total_amount == null || gst_amount == null || menu_total == null || balance_amount == null || discount_amount == null || payment_mode == null || payment_status == null || staff_id == null) {
@@ -47,6 +49,14 @@ export async function add_bill(data: any): Promise<ApiResponse> {
 			payment_status,
 			staff_id
 		});
+
+		// Update Table Status as Booked
+		if( table_id != null ) {
+			await update_table_status({
+				table_id,
+				status: "Active"
+			});
+		}
 
 		return {
 			returncode: 200,

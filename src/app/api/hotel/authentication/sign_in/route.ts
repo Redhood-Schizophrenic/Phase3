@@ -46,6 +46,9 @@ export async function POST(request: Request) {
 				},
 				{
 					headers,
+				},
+				{
+					status: result.returncode
 				}
 			);
 		} else {
@@ -54,6 +57,9 @@ export async function POST(request: Request) {
 					returncode: result.returncode,
 					message: result.message,
 					output: result.output
+				},
+				{
+					status: result.returncode
 				}
 			);
 		}
@@ -64,6 +70,9 @@ export async function POST(request: Request) {
 				returncode: 500,
 				message: `Error Authenticating user: ${error.message}`,
 				output: []
+			},
+			{
+				status: 500
 			}
 		);
 	}

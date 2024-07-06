@@ -22,11 +22,8 @@ export async function add_menu_order(data: any): Promise<ApiResponse> {
 
 		}
 
-		// console.log(response_data)
-
 		response_data.forEach((element: MenuOrder) => {
 			try {
-				console.log(element);
 				fetch("http://localhost:3000/api/hotel/orders/menus/add/", {
 					headers: {
 						'Accept': 'application/json',
