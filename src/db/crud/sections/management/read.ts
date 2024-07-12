@@ -4,7 +4,7 @@ interface SectionsInterface {
 	hotel_id: string
 }
 
-export async function read_sections ({
+export async function read_sections({
 	hotel_id
 }: SectionsInterface) {
 	try {
@@ -13,8 +13,10 @@ export async function read_sections ({
 		const result = await db.sections.findMany({
 			where: {
 				HotelId: hotel_id,
-				Status: "Active"
-			}		
+				NOT: {
+					Status: "Inactive"
+				}
+			}
 		});
 
 		// Database is disconnected
@@ -41,7 +43,7 @@ interface SectionInterface {
 	section_name: string
 }
 
-export async function read_section ({
+export async function read_section({
 	section_name
 }: SectionInterface) {
 	try {
@@ -50,8 +52,10 @@ export async function read_section ({
 		const result = await db.sections.findMany({
 			where: {
 				SectionName: section_name,
-				Status: "Active"
-			}		
+				NOT:{
+					Status: "Inactive"
+				}
+			}
 		});
 
 		// Database is disconnected

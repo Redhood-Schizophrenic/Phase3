@@ -37,6 +37,8 @@ export async function add_menu_order(data: any): Promise<ApiResponse> {
 			order_id
 		});
 
+		console.log(result);
+
 		if (result.returncode != 200) {
 			return {
 				returncode: 200,

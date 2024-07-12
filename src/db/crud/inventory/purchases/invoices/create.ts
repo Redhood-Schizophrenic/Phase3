@@ -7,10 +7,12 @@ interface InvoiceInterface {
 	payment_status: string,
 	supplier_id: string,
 	hotel_id: string,
-	invoice_date: string
+	invoice_date: string,
+	invoice_no: string
 }
 
 export async function create_invoice ({
+	invoice_no,
 	payment_mode,
 	total_amount,
 	balance_amount,
@@ -30,7 +32,8 @@ export async function create_invoice ({
 				TotalAmount: total_amount,
 				BalanceAmount: balance_amount,
 				PaymentStatus: payment_status,
-				Date: invoice_date 
+				Date: invoice_date,
+				Invoice
 			}
 		});
 

@@ -13,7 +13,9 @@ export async function read_reservations ({
 		const result = await db.tableReservation.findMany({
 			where: {
 				HotelId: hotel_id,
-				Status: "Active"
+				NOT: {
+					Status: "Inactive"
+				}
 			},
 			include: {
 				Hotel: true,

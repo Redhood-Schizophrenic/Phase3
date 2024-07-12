@@ -12,19 +12,23 @@ export async function check_order_exists({
 		// Fetching the record
 		const result = await db.bills.findMany({
 			where: {
-				OrderId: order_id
+				OrderId: order_id,
+
+				NOT: {
+					Status: "Inactive"
+				},
 			},
 		});
 
 		// Database is disconnected
 		db.$disconnect();
 
-		if(result.length == 0) {
+		if (result.length == 0) {
 			return {
 				returncode: 400,
 				message: "Data doesn't exists",
 				output: []
-			} 
+			}
 		}
 
 		return {
@@ -57,8 +61,12 @@ export async function read_bills({
 		const result = await db.bills.findMany({
 			where: {
 				Order: {
-					HotelId: hotel_id
-				}
+					HotelId: hotel_id,
+				},
+
+				NOT: {
+					Status: "Inactive"
+				},
 			},
 			include: {
 				Order: {

@@ -13,7 +13,10 @@ export async function read_invoices ({
 		// Fetching the record
 		const result = await db.purchasedInvoice.findMany({
 			where: {
-				HotelId: hotel_id
+				HotelId: hotel_id,
+				NOT: {
+					Status: "Inactive"
+				},
 			},
 			include: {
 				Suppliers: true
@@ -53,7 +56,10 @@ export async function read_invoice_by_supplier ({
 		// Fetching the record
 		const result = await db.purchasedInvoice.findMany({
 			where: {
-				SupplierId: supplier_id
+				SupplierId: supplier_id,
+				NOT: {
+					Status: "Inactive"
+				},
 			},
 			include: {
 				Suppliers: true
@@ -101,7 +107,10 @@ export async function read_invoice_by_payment_status ({
 		// Fetching the record
 		const result = await db.purchasedInvoice.findMany({
 			where: {
-				PaymentStatus: payment_status
+				PaymentStatus: payment_status,
+				NOT: {
+					Status: "Inactive"
+				},
 			},
 			include: {
 				Suppliers: true
@@ -149,7 +158,10 @@ export async function read_invoice_by_date ({
 		// Fetching the record
 		const result = await db.purchasedInvoice.findMany({
 			where: {
-				Date: invoice_date
+				Date: invoice_date,
+				NOT: {
+					Status: "Inactive"
+				},
 			},
 			include: {
 				Suppliers: true

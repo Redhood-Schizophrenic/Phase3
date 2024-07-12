@@ -14,7 +14,9 @@ export async function read_item_categories ({
 		const result = await db.itemCategories.findMany({
 			where: {
 				HotelId: hotel_id,
-				Status: "Active"
+				NOT: {
+					Status: "Inactive"
+				}
 			}
 		});
 
@@ -55,7 +57,9 @@ export async function check_item_category_name ({
 			where: {
 				CategoryName: category_name,
 				HotelId: hotel_id,
-				Status: "Active"
+				NOT: {
+					Status: "Inactive"
+				},
 			}		
 		});
 
@@ -100,7 +104,10 @@ export async function read_category ({
 		// Fetching the record
 		const result = await db.itemCategories.findMany({
 			where: {
-				id: category_id
+				id: category_id,
+				NOT: {
+					Status: "Inactive"
+				},
 			}		
 		});
 

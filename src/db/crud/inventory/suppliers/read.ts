@@ -13,7 +13,10 @@ export async function read_suppliers({
 		// Fetching the record
 		const result = await db.suppliers.findMany({
 			where: {
-				HotelId: hotel_id
+				HotelId: hotel_id,
+				NOT: {
+					Status: "Inactive"
+				},
 			},
 		});
 
@@ -57,7 +60,10 @@ export async function check_supplier({
 			where: {
 				SupplierName: supplier_name,
 				Contact: contact,
-				HotelId: hotel_id
+				HotelId: hotel_id,
+				NOT:{
+					Status: "Inactive"
+				}
 			}
 		});
 
@@ -103,7 +109,10 @@ export async function read_supplier({
 		// Fetching the record
 		const result = await db.suppliers.findMany({
 			where: {
-				id: supplier_id
+				id: supplier_id,
+				NOT:{
+					Status: "Inactive"
+				}
 			}
 		});
 

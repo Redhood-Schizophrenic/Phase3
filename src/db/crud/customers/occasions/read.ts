@@ -12,7 +12,9 @@ export async function read_occassion({ customer_id }: CustomerInterface) {
 			where: {
 				CustomerId: customer_id,
 				Customer: {
-					Status: "Active"
+					NOT: {
+						Status: "Inactive"
+					},
 				}
 			},
 			include: {
@@ -55,7 +57,9 @@ export async function read_occassions() {
 		const result = await db.customerOccassion.findMany({
 			where: {
 				Customer: {
-					Status: "Active"
+					NOT: {
+						Status: "Inactive"
+					},
 				}
 			},
 			include: {

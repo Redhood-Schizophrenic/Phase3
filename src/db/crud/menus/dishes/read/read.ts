@@ -14,7 +14,9 @@ export async function read_dishes ({
 		const result = await db.dishes.findMany({
 			where: {
 				HotelId: hotel_id,
-				Status: "Active"
+				NOT: {
+					Status: "Inactive"
+				}
 			}		
 		});
 
@@ -58,7 +60,9 @@ export async function read_dish ({
 				HotelId: hotel_id,
 				DishName: dish_name,
 				Code: dish_code,
-				Status: "Active"
+				NOT:{
+					Status: "Inactive"
+				}
 			}		
 		});
 

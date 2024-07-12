@@ -14,7 +14,9 @@ export async function read_hotel_staffs ({
 		const result = await db.staffs.findMany({
 			where: {
 				HotelId: hotel_id,
-				Status: "Active"
+				NOT:{
+					Status: "Inactive"
+				}
 			}
 		});
 
@@ -64,7 +66,9 @@ export async function check_staff_exists ({
 				Email: email,
 				Contact: contact,
 				HotelId: hotel_id,
-				Status: "Active"
+				NOT:{
+					Status: "Inactive"
+				}
 			}		
 		});
 
@@ -109,7 +113,10 @@ export async function read_staff_details ({
 		// Fetching the record
 		const result = await db.staffs.findMany({
 			where: {
-				Email: email
+				Email: email,
+				NOT:{
+					Status: "Inactive"
+				}
 			}		
 		});
 
@@ -156,7 +163,9 @@ export async function staff_login ({
 		const result = await db.staffs.findMany({
 			where: {
 				Email: email,
-				Status: "Active"
+				NOT:{
+					Status: "Inactive"
+				}
 			}		
 		});
 

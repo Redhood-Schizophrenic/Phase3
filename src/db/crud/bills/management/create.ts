@@ -9,7 +9,8 @@ interface BillInterface {
 	discount_amount: number,
 	payment_mode: string,
 	payment_status: string,
-	staff_id: string
+	staff_id: string,
+	customer_id: string
 }
 
 export async function create_bill ({
@@ -21,7 +22,8 @@ export async function create_bill ({
 	discount_amount,
 	payment_mode,
 	payment_status,
-	staff_id
+	staff_id,
+	customer_id
 }: BillInterface) {
 	try {
 
@@ -36,7 +38,8 @@ export async function create_bill ({
 				DiscountPrice: discount_amount,
 				PaymentMode: payment_mode,
 				Status: payment_status,
-				StaffId: staff_id
+				StaffId: staff_id,
+				CustomerId: customer_id
 			}
 		});
 

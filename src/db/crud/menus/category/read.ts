@@ -14,7 +14,9 @@ export async function read_menu_categories ({
 		const result = await db.menuCategory.findMany({
 			where: {
 				HotelId: hotel_id,
-				Status: "Active"
+				NOT: {
+					Status: "Inactive"
+				}
 			}		
 		});
 
@@ -55,7 +57,9 @@ export async function read_category ({
 			where: {
 				CategoryName: category_name,
 				HotelId: hotel_id,
-				Status: "Active"
+				NOT:{
+					Status: "Inactive"
+				}
 			}		
 		});
 

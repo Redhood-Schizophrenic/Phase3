@@ -5,7 +5,9 @@ export async function read_subscriptions() {
 
 		const result = await db.subscriptions.findMany({
 			where: {
-				Status: "Active"
+				NOT:{
+					Status: "Inactive"
+				}
 			}
 		});
 
@@ -41,7 +43,9 @@ export async function read_subscription({
 		const result = await db.subscriptions.findMany({
 			where: {
 				SubscriptionName: subscription_name,
-				Status: "Active"
+				NOT:{
+					Status: "Inactive"
+				}
 			},
 		});
 

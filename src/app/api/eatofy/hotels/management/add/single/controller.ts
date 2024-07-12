@@ -1,4 +1,4 @@
-import { create_hotel_without_logo } from "@/db/crud/hotels/management/create/single_entry";
+import { create_hotel_without_logo } from "@/db/crud/hotels/management/create/create";
 import { ApiResponse } from "@/types/ApiResponse";
 import { hashing } from "@/utils/hashing";
 

@@ -13,7 +13,10 @@ export async function read_menus ({
 		// Fetching the record
 		const result = await db.menus.findMany({
 			where: {
-				SectionId: section_id
+				SectionId: section_id,
+				NOT: {
+					Status: "Inactive"
+				}
 			},
 			include: {
 				Dish: true,
@@ -54,7 +57,10 @@ export async function read_menu ({
 		// Fetching the record
 		const result = await db.menus.findMany({
 			where: {
-				DishId: dish_id
+				DishId: dish_id,
+				NOT:{
+					Status: "Inactive"
+				}
 			}		
 		});
 
@@ -99,7 +105,10 @@ export async function read_menu_for_order ({
 		// Fetching the record
 		const result = await db.menus.findMany({
 			where: {
-				id: menu_id
+				id: menu_id,
+				NOT:{
+					Status: "Inactive"
+				}
 			}		
 		});
 

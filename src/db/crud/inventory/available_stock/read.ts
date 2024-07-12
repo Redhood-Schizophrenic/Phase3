@@ -13,7 +13,10 @@ export async function read_available_stock ({
 		// Fetching the record
 		const result = await db.availableStock.findMany({
 			where: {
-				HotelId: hotel_id
+				HotelId: hotel_id,
+				NOT: {
+					Status: "Inactive"
+				}
 			},
 			include: {
 				Items: {

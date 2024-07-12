@@ -7,7 +7,7 @@ interface AttendanceInterface {
 	date: string
 }
 
-export async function read_hotel_staffs_attendance ({
+export async function read_hotel_staffs_attendance({
 	hotel_id,
 	date
 }: AttendanceInterface) {
@@ -18,7 +18,9 @@ export async function read_hotel_staffs_attendance ({
 			where: {
 				Staff: {
 					HotelId: hotel_id,
-					Status: "Active"
+					NOT: {
+						Status: "Inactive"
+					}
 				},
 				Date: date
 			}
@@ -50,7 +52,7 @@ interface AttendanceCheckerInterface {
 	staff_id: string
 }
 
-export async function check_staff_attendance ({
+export async function check_staff_attendance({
 	date,
 	staff_id
 }: AttendanceCheckerInterface) {
@@ -60,14 +62,14 @@ export async function check_staff_attendance ({
 		const result = await db.staffAttendance.findMany({
 			where: {
 				Date: date,
-				StaffId: staff_id
-			}		
+				StaffId: staff_id,
+			}
 		});
 
 		// Database is disconnected
 		db.$disconnect();
 
-		if(result.length==0){
+		if (result.length == 0) {
 			return {
 				returncode: 400,
 				message: "Attendance doesn't exist",
@@ -97,7 +99,7 @@ interface StaffInterface {
 	staff_id: string
 }
 
-export async function read_staff_attendance ({
+export async function read_staff_attendance({
 	staff_id
 }: StaffInterface) {
 	try {
@@ -106,14 +108,14 @@ export async function read_staff_attendance ({
 		const result = await db.staffAttendance.findMany({
 			where: {
 				StaffId: staff_id,
-				Month: getCurrentMonthName()
-			}		
+				Month: getCurrentMonthName(),
+			}
 		});
 
 		// Database is disconnected
 		db.$disconnect();
 
-		if(result.length==0){
+		if (result.length == 0) {
 			return {
 				returncode: 400,
 				message: "Attendance doesn't exist",

@@ -13,7 +13,10 @@ export async function read_purchased_stock ({
 		// Fetching the record
 		const result = await db.purchasedStock.findMany({
 			where: {
-				InvoiceId: invoice_id
+				InvoiceId: invoice_id,
+				NOT: {
+					Status: "Inactive"
+				},
 			},
 			include: {
 				Items: true

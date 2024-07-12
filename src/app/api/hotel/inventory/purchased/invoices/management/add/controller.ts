@@ -4,6 +4,7 @@ import { create_invoice } from "@/db/crud/inventory/purchases/invoices/create";
 export async function add_invoice(data: any): Promise<ApiResponse> {
 	try {
 
+		const invoice_no : string | null = data['invoice_no']
 		const payment_mode: string | null = data['payment_mode'];
 		const total_amount: number | null = data['total_amount'];
 		const balance_amount: number | null = data['balance_amount'];
@@ -13,7 +14,7 @@ export async function add_invoice(data: any): Promise<ApiResponse> {
 		const invoice_date: string | null = data['invoice_date'];
 		
 		// Default Invalid Checker
-		if ( total_amount == null || payment_status == null || balance_amount == null || payment_status == null || supplier_id == null || hotel_id == null || invoice_date == null ) {
+		if ( total_amount == null || payment_status == null || balance_amount == null || payment_status == null || supplier_id == null || hotel_id == null || invoice_date == null || invoice_no == null ) {
 			return {
 				returncode: 400,
 				message: 'Invalid Input',
@@ -24,6 +25,7 @@ export async function add_invoice(data: any): Promise<ApiResponse> {
 
 		// Inserting the Purchase Order
 		const result = await create_invoice({
+			invoice_no,
 			payment_mode,
 			total_amount,
 			balance_amount,

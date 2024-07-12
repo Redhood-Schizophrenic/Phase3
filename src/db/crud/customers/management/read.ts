@@ -16,7 +16,9 @@ export async function read_customer({
 			where: {
 				CustomerName: customer_name,
 				Contact: contact,
-				Status: "Active"
+				NOT: {
+					Status: "Inactive"
+				},
 			},
 		});
 
@@ -61,7 +63,9 @@ export async function read_customers ({
 		const result = await db.customers.findMany({
 			where: {
 				HotelId: hotel_id,
-				Status: "Active"
+				NOT: {
+					Status: "Inactive"
+				},
 			},
 		});
 

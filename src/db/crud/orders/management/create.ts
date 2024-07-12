@@ -3,7 +3,6 @@ import db from "@/db/connector";
 interface OrderInterface {
 	type: string,
 	table_id: string | null,
-	customer_id: string | null,
 	waiter_id: string,
 	hotel_id: string
 }
@@ -11,7 +10,6 @@ interface OrderInterface {
 export async function create_order ({
 	type,
 	table_id,
-	customer_id,
 	waiter_id,
 	hotel_id
 }: OrderInterface) {
@@ -22,7 +20,6 @@ export async function create_order ({
 			data: {
 				Type: type,
 				TableId: table_id,
-				CustomerId: customer_id,
 				WaiterId: waiter_id,
 				HotelId: hotel_id
 			}
