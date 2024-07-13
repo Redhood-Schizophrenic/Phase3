@@ -37,6 +37,7 @@ http://localhost:3000/api/hotel/bills/management/update/payment
 ```json
 {
     "bill_id": "2861a0c8-9582-4d84-b227-1de06a3671c3",
+    "table_id": "<optional>",
     "total_amount": 1040.00,
     "cgst_rate": "2.5 %",
     "sgst_rate": "2.5 %",

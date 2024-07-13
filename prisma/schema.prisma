@@ -435,16 +435,18 @@ model Expenses {
   Note           String?
   Date           String
   PayableTo      String
-  AmountPayable  String
-  AmountPaid     String
+  AmountPayable  Float
+  AmountPaid     Float
   HotelId        String
+  Hotel          Hotels   @relation(fields: [HotelId], references: [id])
+  Status         String   @default("Active")
+  PaymentStatus  String   @default("Unpaid")
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
   xata_id        String   @unique(map: "Expenses__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
   xata_version   Int      @default(0)
   xata_createdat DateTime @default(now()) @db.Timestamptz(6)
   xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
-  Hotel          Hotels   @relation(fields: [HotelId], references: [id])
 }
 
 model ComplianceChecklist {
@@ -453,6 +455,7 @@ model ComplianceChecklist {
   Description    String?
   Document       Bytes?
   HotelId        String
+  Status         String   @default("Active")
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
   xata_id        String   @unique(map: "ComplianceChecklist__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))

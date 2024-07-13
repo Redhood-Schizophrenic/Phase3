@@ -1,10 +1,12 @@
 import { bill_payment } from "@/db/crud/bills/management/update";
+import { update_table_status } from "@/db/crud/tables/management/update";
 import { ApiResponse } from "@/types/ApiResponse";
 
 export async function pay_bill(data: any): Promise<ApiResponse> {
 	try {
 
 		const bill_id: string | null = data['bill_id'];
+		const table_id: string | null = data['table_id'];
 		const total_amount: number | null = data['total_amount'];
 		const cgst_rate: string | null = data['cgst_rate'];
 		const sgst_rate: string | null = data['sgst_rate'];
@@ -24,7 +26,6 @@ export async function pay_bill(data: any): Promise<ApiResponse> {
 				message: 'Invalid Input',
 				output: []
 			}
-
 		}
 
 		// Paying the Bill
@@ -42,6 +43,14 @@ export async function pay_bill(data: any): Promise<ApiResponse> {
 			payment_mode,
 			payment_status
 		});
+
+		// Update Table Status as Booked
+		if (table_id != null) {
+			await update_table_status({
+				table_id,
+				status: "Active"
+			});
+		}
 
 		return {
 			returncode: 200,
