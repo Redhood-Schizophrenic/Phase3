@@ -1,18 +1,18 @@
 import db from "@/db/connector";
 
 interface DeleteOrderInterface {
-	menu_order_id: string
+	order_id: string
 }
 
 export async function delete_order_menus ({
-	menu_order_id
+	order_id
 }: DeleteOrderInterface) {
 	try {
 
 		// Fetching the record
-		const result = await db.orderMenus.delete({
+		const result = await db.orders.delete({
 			where: {
-				id: menu_order_id,
+				id: order_id,
 			}
 		});
 

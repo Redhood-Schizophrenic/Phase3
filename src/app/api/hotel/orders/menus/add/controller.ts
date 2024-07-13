@@ -1,6 +1,6 @@
-import { ApiResponse } from "@/types/ApiResponse";
-import { create_menu_of_order } from "@/db/crud/orders/menu/create";
 import { read_menu_for_order } from "@/db/crud/menus/management/read";
+import { create_menu_of_order } from "@/db/crud/orders/management/create";
+import { ApiResponse } from "@/types/ApiResponse";
 
 export async function add_menu_order(data: any): Promise<ApiResponse> {
 	try {
@@ -8,10 +8,12 @@ export async function add_menu_order(data: any): Promise<ApiResponse> {
 		const quantity: string | null = data['quantity'];
 		const note: string | null = data['note'];
 		const menu_id: string | null = data['menu_id'];
-		const order_id: string | null = data['order_id'];
+		const bill_id: string | null = data['order_id'];
+		const hotel_id: string | null = data['hotel_id'];
+
 
 		// Default Invalid Checker
-		if (quantity == null || menu_id == null || order_id == null) {
+		if (quantity == null || menu_id == null || bill_id == null || hotel_id == null) {
 			return {
 				returncode: 400,
 				message: 'Invalid Input',
@@ -34,10 +36,9 @@ export async function add_menu_order(data: any): Promise<ApiResponse> {
 			note,
 			total_amount,
 			menu_id,
-			order_id
+			bill_id,
+			hotel_id
 		});
-
-		console.log(result);
 
 		if (result.returncode != 200) {
 			return {

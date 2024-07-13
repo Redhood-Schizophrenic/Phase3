@@ -1,7 +1,7 @@
 import { ApiResponse } from "@/types/ApiResponse";
-import { read_bills } from "@/db/crud/bills/management/read";
+import { read_hotel_bills } from "@/db/crud/bills/management/read";
 
-export async function fetch_bills(data: any): Promise<ApiResponse> {
+export async function fetch_hotel_bills(data: any): Promise<ApiResponse> {
 	try {
 
 		const hotel_id: string | null = data['hotel_id'];
@@ -17,13 +17,13 @@ export async function fetch_bills(data: any): Promise<ApiResponse> {
 		}
 
 		// Getting the Items
-		const result = await read_bills({
+		const result = await read_hotel_bills({
 			hotel_id
 		});
 
 		return {
 			returncode: 200,
-			message: "Hotel's bills Fetched",
+			message: "Hotel's Bills  Fetched",
 			output: result.output
 		};
 

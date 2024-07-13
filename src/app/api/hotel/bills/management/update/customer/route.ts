@@ -1,9 +1,9 @@
-import { add_bill } from "./controller";
+import { update_customer_in_bill } from "./controller";
 
-export async function POST(request: Request) {
+export async function PUT(request: Request) {
 	try {
 		const data = await request.json();
-		const result = await add_bill(data);
+		const result = await update_customer_in_bill(data);
 		return Response.json(
 			{
 				returncode: result.returncode,
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 		return Response.json(
 			{
 				returncode: 500,
-				message: `Error Adding Bill: ${error.message}`,
+				message: `Error Updating Customer: ${error.message}`,
 				output: []
 			},
 			{

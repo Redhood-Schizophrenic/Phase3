@@ -3,7 +3,7 @@ import { ApiResponse } from "@/types/ApiResponse";
 interface MenuOrder {
 	quantity: string,
 	menu_id: string,
-	order_id: string,
+	bill_id: string,
 	note: string | null
 }
 

@@ -385,46 +385,47 @@ model Orders {
   Note           String?
   TotalAmount    Float
   MenuId         String
+  Menu           Menus    @relation(fields: [MenuId], references: [id])
   BillId         String
+  Bill           Bills    @relation(fields: [BillId], references: [id])
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
-  hotelsId       String?
+  hotelsId       String
+  Hotels         Hotels   @relation(fields: [hotelsId], references: [id])
   xata_id        String   @unique(map: "Orders__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
   xata_version   Int      @default(0)
   xata_createdat DateTime @default(now()) @db.Timestamptz(6)
   xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
-  Bill           Bills    @relation(fields: [BillId], references: [id])
-  Menu           Menus    @relation(fields: [MenuId], references: [id])
-  Hotels         Hotels?  @relation(fields: [hotelsId], references: [id])
 }
 
 model Bills {
   id             String     @id @unique @default(uuid())
   Type           String
   TableId        String?
+  Table          Tables?    @relation(fields: [TableId], references: [id])
   WaiterId       String
+  Waiter         Staffs     @relation(fields: [WaiterId], references: [id])
   HotelId        String
+  Hotels         Hotels?    @relation(fields: [HotelId], references: [id])
   CustomerId     String?
-  TotalAmount    Float
-  CGSTRate       String
-  SGSTRate       String
-  SGSTAmount     Float
-  CGSTAmount     Float
-  MenuTotal      Float
+  Customer       Customers? @relation(fields: [CustomerId], references: [id])
+  TotalAmount    Float      @default(0.0)
+  CGSTRate       String     @default("2.5 %")
+  SGSTRate       String     @default("2.5 %")
+  SGSTAmount     Float      @default(0.0)
+  CGSTAmount     Float      @default(0.0)
+  MenuTotal      Float      @default(0.0)
   BalanceAmount  Float      @default(0.0)
-  DiscountPrice  Float      @default(0.0)
-  PaymentMode    String
-  Status         String
+  DiscountRate   String?
+  DiscountPrice  Float?
+  PaymentMode    String     @default("None")
+  Status         String     @default("Active")
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
   xata_id        String     @unique(map: "Bills__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
   xata_version   Int        @default(0)
   xata_createdat DateTime   @default(now()) @db.Timestamptz(6)
   xata_updatedat DateTime   @default(now()) @db.Timestamptz(6)
-  Customers      Customers? @relation(fields: [CustomerId], references: [id])
-  Hotel          Hotels     @relation(fields: [HotelId], references: [id])
-  Table          Tables?    @relation(fields: [TableId], references: [id])
-  Waiters        Staffs     @relation(fields: [WaiterId], references: [id])
   Orders         Orders[]
 }
 

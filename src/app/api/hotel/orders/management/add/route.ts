@@ -1,9 +1,9 @@
-import { add_order } from "./controller";
+import { add__order } from "./controller";
 
 export async function POST(request: Request) {
 	try {
 		const data = await request.json();
-		const result = await add_order(data);
+		const result = await add__order(data);
 		return Response.json(
 			{
 				returncode: result.returncode,

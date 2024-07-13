@@ -1,13 +1,13 @@
 import { ApiResponse } from "@/types/ApiResponse";
-import { read_order } from "@/db/crud/orders/management/read"; 
+import { kot_display } from "@/db/crud/orders/management/read";
 
-export async function fetch_single_order(data: any): Promise<ApiResponse> {
+export async function fetch_kot_bill(data: any): Promise<ApiResponse> {
 	try {
 
-		const order_id: string | null = data['order_id'];
+		const bill_id: string | null = data['bill_id'];
 
 		// Default Invalid Checker
-		if ( order_id == null ) {
+		if ( bill_id == null ) {
 			return {
 				returncode: 400,
 				message: 'Invalid Input',
@@ -16,14 +16,14 @@ export async function fetch_single_order(data: any): Promise<ApiResponse> {
 
 		}
 
-		// Getting the Orders
-		const result = await read_order({
-			order_id
+		// Getting the Items
+		const result = await kot_display({
+			bill_id
 		});
 
 		return {
 			returncode: 200,
-			message: "Order Fetched",
+			message: "Kot orders Fetched",
 			output: result.output
 		};
 

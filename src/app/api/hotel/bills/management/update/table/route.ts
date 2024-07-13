@@ -1,9 +1,9 @@
-import { fetch_all_order_menus } from "./controller";
+import { update_table_in_bill } from "./controller";
 
-export async function POST(request: Request) {
+export async function PUT(request: Request) {
 	try {
 		const data = await request.json();
-		const result = await fetch_all_order_menus(data);
+		const result = await update_table_in_bill(data);
 		return Response.json(
 			{
 				returncode: result.returncode,
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 		return Response.json(
 			{
 				returncode: 500,
-				message: `Error Fetching Order Menus: ${error.message}`,
+				message: `Error Updating Table: ${error.message}`,
 				output: []
 			},
 			{
@@ -28,3 +28,4 @@ export async function POST(request: Request) {
 		);
 	}
 }
+
