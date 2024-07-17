@@ -55,7 +55,7 @@ export async function pay_bill(data: any): Promise<ApiResponse> {
 		return {
 			returncode: 200,
 			message: "Bill Payment Updated",
-			output: result.output
+			output: Array.isArray(result.output) ? result.output : [result.output as any]
 		};
 
 	} catch (error: any) {

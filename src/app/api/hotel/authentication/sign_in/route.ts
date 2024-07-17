@@ -13,6 +13,7 @@ export async function POST(request: Request) {
 
 			// Create JWT token
 			const token = createToken({
+				// (result.output as { id: string }).id
 				hotel_id: `${result.output[0].HotelId}`,
 				employee_id: `${result.output[0].id}`,
 			});
@@ -46,10 +47,8 @@ export async function POST(request: Request) {
 				},
 				{
 					headers,
-				},
-				{
 					status: result.returncode
-				}
+				},
 			);
 		} else {
 			return NextResponse.json(

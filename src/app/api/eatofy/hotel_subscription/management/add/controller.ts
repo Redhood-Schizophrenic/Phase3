@@ -48,11 +48,22 @@ export async function add_hotel_subscription(data: any): Promise<ApiResponse> {
 			subscription_id
 		});
 
-		return {
-			returncode: 200,
-			message: "Hotel Subscription Added",
-			output: result.output
-		};
+		if (result.returncode == 200) {
+
+			return {
+				returncode: 200,
+				message: "Hotel Subscription Added",
+				output: Array.isArray(result.output) ? result.output : [result.output as any]
+			};
+		}
+		else {
+			return {
+				returncode: 500,
+				message: result.message,
+				output: []
+			};
+
+		}
 
 	} catch (error: any) {
 		return {

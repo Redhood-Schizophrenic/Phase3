@@ -5,7 +5,7 @@ interface BillInterface {
 	table_id: string | null,
 	waiter_id: string,
 	hotel_id: string,
-	customer_id: string,
+	customer_id: string | null,
 	}
 
 export async function create_bill ({

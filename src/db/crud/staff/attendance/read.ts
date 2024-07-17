@@ -23,6 +23,9 @@ export async function read_hotel_staffs_attendance({
 					}
 				},
 				Date: date
+			},
+			include: {
+				Staff: true
 			}
 		});
 
@@ -108,7 +111,6 @@ export async function read_staff_attendance({
 		const result = await db.staffAttendance.findMany({
 			where: {
 				StaffId: staff_id,
-				Month: getCurrentMonthName(),
 			}
 		});
 

@@ -8,7 +8,7 @@ export async function add_menu_order(data: any): Promise<ApiResponse> {
 		const quantity: string | null = data['quantity'];
 		const note: string | null = data['note'];
 		const menu_id: string | null = data['menu_id'];
-		const bill_id: string | null = data['order_id'];
+		const bill_id: string | null = data['bill_id'];
 		const hotel_id: string | null = data['hotel_id'];
 
 

@@ -5,7 +5,7 @@ interface OrderInterface {
 	bill_id: string
 }
 
-export async function kot_display ({
+export async function order_display ({
 	bill_id
 }: OrderInterface) {
 	try {
@@ -15,8 +15,54 @@ export async function kot_display ({
 			where: {
 				BillId: bill_id,
 			},
+		});
+
+		// Database is disconnected
+		db.$disconnect();
+
+		return {
+			returncode: 200,
+			message: "Data Fetched",
+			output: result
+		};
+
+	} catch (error: any) {
+
+		return {
+			returncode: 500,
+			message: error.message,
+			output: []
+		};
+
+	}
+}
+
+// Fetch all categories
+interface KotInterface {
+	hotel_id: string
+}
+
+export async function kot_display ({
+	hotel_id
+}: KotInterface) {
+	try {
+
+		// Fetching the record
+		const result = await db.orders.findMany({
+			where: {
+				hotelsId: hotel_id,
+				Bill: {
+					Table: {
+						Status: "Booked"
+					}
+				}
+			},
 			include: {
-				Bill: true
+				Menu: {
+					include: {
+						Dish: true
+					}
+				}
 			}
 		});
 

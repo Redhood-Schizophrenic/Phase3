@@ -1,5 +1,6 @@
 import { ApiResponse } from "@/types/ApiResponse";
 import { read_bill_info } from "@/db/crud/bills/management/read";
+import { order_display } from "@/db/crud/orders/management/read";
 
 export async function fetch_bill_info(data: any): Promise<ApiResponse> {
 	try {
@@ -7,7 +8,7 @@ export async function fetch_bill_info(data: any): Promise<ApiResponse> {
 		const bill_id: string | null = data['bill_id'];
 
 		// Default Invalid Checker
-		if ( bill_id == null ) {
+		if (bill_id == null) {
 			return {
 				returncode: 400,
 				message: 'Invalid Input',
@@ -21,10 +22,18 @@ export async function fetch_bill_info(data: any): Promise<ApiResponse> {
 			bill_id
 		});
 
+		const orders_result = await order_display({
+			bill_id
+		});
+
+
 		return {
 			returncode: 200,
 			message: "Bill Info Fetched",
-			output: result.output
+			output: [{
+				BillInfo: result.output,
+				Orders: orders_result.output
+			}]
 		};
 
 	} catch (error: any) {

@@ -44,7 +44,7 @@ export async function add_subscription(data: any): Promise<ApiResponse> {
 		return {
 			returncode: 200,
 			message: " Subscription Added",
-			output: result.output
+			output: Array.isArray(result.output) ? result.output : [result.output as any]
 		};
 
 	} catch (error: any) {

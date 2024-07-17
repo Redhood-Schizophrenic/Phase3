@@ -29,7 +29,7 @@ export async function update_staff_password(data: any): Promise<ApiResponse> {
 		return {
 			returncode: 200,
 			message: "Password Updated",
-			output: result.output
+			output: Array.isArray(result.output) ? result.output : [result.output as any]
 		};
 
 	} catch (error: any) {

@@ -1,5 +1,5 @@
 export interface ApiResponse {
 	returncode: number,
 	message: string,
-	output: Array | Array<void>
+	output: Array<Object> | Array<void>
 } 

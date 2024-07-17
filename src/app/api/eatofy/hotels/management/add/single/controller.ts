@@ -43,7 +43,7 @@ export async function add_hotel(data: any): Promise<ApiResponse> {
 		return {
 			returncode: 200,
 			message: "Hotel Added",
-			output: result.output
+			output: Array.isArray(result.output) ? result.output : [result.output as any]
 		};
 
 	} catch (error: any) {

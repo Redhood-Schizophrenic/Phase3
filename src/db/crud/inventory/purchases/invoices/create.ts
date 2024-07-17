@@ -33,7 +33,7 @@ export async function create_invoice ({
 				BalanceAmount: balance_amount,
 				PaymentStatus: payment_status,
 				Date: invoice_date,
-				Invoice
+				InvoiceNo: invoice_no
 			}
 		});
 

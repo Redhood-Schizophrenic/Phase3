@@ -40,7 +40,7 @@ export async function add_customer(data: any): Promise<ApiResponse> {
 		// If occassion exists
 		if( occassion != null && date != null ){
 			await create_customer_occassion( {
-				customer_id: result.output.id,
+				customer_id: (result.output as { id: string }).id,
 				occassion,
 				date
 			} )

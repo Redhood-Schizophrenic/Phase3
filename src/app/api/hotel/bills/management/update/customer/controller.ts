@@ -44,7 +44,7 @@ export async function update_customer_in_bill(data: any): Promise<ApiResponse> {
 					hotel_id
 				});
 
-				customer_id = result.output.id;
+				customer_id = (result.output as { id: string }).id;
 				// If occassion exists
 				if (occassion != null && date != null) {
 					await create_customer_occassion({
@@ -71,7 +71,7 @@ export async function update_customer_in_bill(data: any): Promise<ApiResponse> {
 		return {
 			returncode: 200,
 			message: "Bill Customer Updated",
-			output: result.output
+			output: Array.isArray(result.output) ? result.output : [result.output as any]
 		};
 
 	} catch (error: any) {

@@ -66,7 +66,7 @@ export async function read_bill_info({
 				Customer: true,
 				Waiter: true,
 				Table: true,
-				Hotels: true
+				Hotels: true,
 			}
 		});
 

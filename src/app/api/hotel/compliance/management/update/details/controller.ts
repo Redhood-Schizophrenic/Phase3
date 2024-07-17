@@ -39,7 +39,7 @@ export async function update_compliance(data: any): Promise<ApiResponse> {
 		return {
 			returncode: 200,
 			message: "Details Updated",
-			output: result.output
+			output: Array.isArray(result.output) ? result.output : [result.output as any]
 		};
 
 	} catch (error: any) {

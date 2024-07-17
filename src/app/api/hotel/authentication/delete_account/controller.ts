@@ -25,7 +25,7 @@ export async function delete_staff_account(data: any): Promise<ApiResponse> {
 		return {
 			returncode: 200,
 			message: "Account Deleted",
-			output: result.output
+			output: Array.isArray(result.output) ? result.output : [result.output as any]
 		};
 
 	} catch (error: any) {

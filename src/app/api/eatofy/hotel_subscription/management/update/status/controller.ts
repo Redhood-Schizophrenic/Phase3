@@ -28,7 +28,7 @@ export async function update_hotel_subscription(data: any): Promise<ApiResponse>
 		return {
 			returncode: 200,
 			message: "Hotel Subscription Updated",
-			output: result.output
+			output: Array.isArray(result.output) ? result.output : [result.output as any]
 		};
 
 	} catch (error: any) {

@@ -1,5 +1,4 @@
 import db from "@/db/connector";
-import { getCurrentMonthName } from "@/helpers/monthName";
 
 interface StaffAttendanceInterface {
 	date: string,
@@ -28,7 +27,6 @@ export async function create_staff_attendance ({
 				Departure: departure_time,
 				Type: type,
 				Note: note,
-				Month: getCurrentMonthName(),
 				StaffId: staff_id
 			}
 		});
